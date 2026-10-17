@@ -13,6 +13,8 @@ description: "Conventions for designing eurorack hardware."
 
 ## Common components
 
+## Tools
+
 ## Schematics structuring
 
 ## Panel design rules
