@@ -39,6 +39,14 @@ description: "Conventions for designing eurorack hardware."
 
 ## Common components
 
+### Mechanical parts
+
+#### Jacks
+
+- Prefer PJ398SM (QingPu WQP518MA aka “Thonkiconn”) 3.5 mm mono switching jacks for PCB mounting: 10 mm effective body height, 4.5 mm thread length, and a 6 mm panel hole. [Datasheet](https://www.thonk.co.uk/wp-content/uploads/2018/07/Thonkiconn_Jack_Datasheet-new.jpg).
+- Use PJ301BM (QingPu WQP518MA-BM) as an alternative 3.5 mm mono switching PCB jack with two GND pins: 11.5 mm effective body height, 4.5 mm thread length, and a 6 mm panel hole. [Datasheet](https://www.exploding-shed.com/thumbnail/f9/e2/24/1775034136/2473-100522-D_1920x1920.png).
+- Use [AudioJacks](https://github.com/clacktronics/AudioJacks) KiCad footprints and 3D models: `Jack_3.5mm_QingPu_WQP-PJ398SM_Vertical` for PJ398SM (“Thonkiconn”) and `Jack_3.5mm_QingPu_WQP-PJ301BM_Vertical` for PJ301BM.
+
 ## Part sourcing
 
 ## Schematics structuring
