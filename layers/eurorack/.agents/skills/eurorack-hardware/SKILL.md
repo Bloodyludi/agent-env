@@ -9,8 +9,20 @@ description: "Conventions for designing eurorack hardware."
 
 ## Signal specifications
 
+## Clearences and dimensions
+
+## Common components
+
+## Schematics structuring
+
 ## Panel design rules
 
 ## Board design rules
 
-## Common components
+### PCB layout rules
+
+### PCB routing rules
+
+## Part sourcing
+
+## Fabrication
