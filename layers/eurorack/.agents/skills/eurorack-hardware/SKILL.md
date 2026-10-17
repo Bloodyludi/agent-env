@@ -13,7 +13,7 @@ description: "Conventions for designing eurorack hardware."
 
 ## Common components
 
-## Tools
+## Tools to use
 
 ## Schematics structuring
 
