@@ -31,6 +31,12 @@ description: "Conventions for designing eurorack hardware."
 
 ## Clearences and dimensions
 
+- Use a panel height of 128.5 mm for 3U modules.
+- Take panel width from the `actual module width [mm]` column in [Doepfer’s Table 1](https://doepfer.de/a100_man/a100m_e.htm).
+- Use M3×6 mounting screws with horizontal mounting slots 6 mm wide and 3.2 mm high.
+- Position mounting-slot centres 3 mm from the top and bottom panel edges; set the left slot centres 7.5 mm from the left edge.
+- Position the right mounting-slot centres at `xRightCenterPos = 7.5 + 5.08 * (<module_hp> - 3)` mm, measured from the left panel edge.
+
 ## Common components
 
 ## Part sourcing
