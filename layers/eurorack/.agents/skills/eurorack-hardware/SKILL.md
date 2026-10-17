@@ -24,6 +24,11 @@ description: "Conventions for designing eurorack hardware."
 
 ## Signal specifications
 
+- Use 1 V/oct for pitch CV: each +1 V doubles the oscillator frequency.
+- Target +5 V for gate and trigger outputs.
+- Target 10 Vpp (−5 V to +5 V) for audio outputs.
+- Target −5 V to +5 V for bipolar CV outputs (e.g., LFOs) and 0 V to +5 V for unipolar CV outputs (e.g., envelopes).
+
 ## Clearences and dimensions
 
 ## Common components
