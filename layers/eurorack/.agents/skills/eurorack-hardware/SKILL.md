@@ -39,7 +39,7 @@ description: "Conventions for designing eurorack hardware."
 
 ## Common components
 
-### Mechanical parts
+### Panel components
 
 #### Jacks
 
@@ -65,6 +65,19 @@ description: "Conventions for designing eurorack hardware."
 
 - Use E-Switch TL1105SPF100Q momentary SPST-NO tactile buttons: 6 × 6 mm body. Fit 1R series caps (nominal 5 mm diameter); capped assembly height is 13.6 mm above the PCB. [Datasheet](https://configured-product-images.s3.amazonaws.com/2D/specs/TL1105SPF100Q.pdf) · [1R caps](https://www.e-switch.com/product/1r/) · [Capped assembly](https://configured-product-images.s3.amazonaws.com/2D/specs/TL1105SPF100Q1RBLK.pdf).
 - Use Thonk low-profile illuminated LED buttons with momentary SPST-NO action: 7.5 × 7.5 mm top flange and a 5.5 mm diameter actuator. Choose red, green, blue, yellow, orange, white, or bipolar red/green LEDs. Use the supplied `SW_Tact_Low_Profile_LED_ExtraHoles` KiCad footprint so the three underside protrusions sit in PCB holes and match Thonkiconn jack mounting height. [Datasheet](https://www.thonk.co.uk/wp-content/uploads/2021/12/LowProfileButton.pdf) · [KiCad footprints and 3D model](https://www.thonk.co.uk/wp-content/uploads/2025/10/THONK-SW-LP-LED-KICAD.zip) · [Shop](https://www.thonk.co.uk/shop/low-profile-led-buttons/).
+
+#### LEDs
+
+- Always use 3 mm (T-1) through-hole LEDs.
+- Prefer Kingbright cylindrical LEDs: WP424GDT (green), WP424IDT (red), and WP424YDT (yellow). [WP424YDT datasheet](https://www.kingbrightusa.com/images/catalog/spec/wp424ydt.pdf).
+- Use Kingbright WP3VEGW for red/green bi-colour indication with three leads and a common cathode. [Datasheet](https://www.kingbrightusa.com/images/catalog/SPEC/WP3VEGW.pdf).
+- Use Kingbright WP937EGW as the two-lead red/green bi-colour option. [Datasheet](https://www.kingbrightusa.com/images/catalog/spec/wp937egw.pdf).
+- For other 3 mm LED options, refer to the [Kingbright through-hole LED catalog](https://kingbright-europe.de/wp-content/uploads/2024/10/P24-33-THROUGH-HOLE-LEDKBE-Link.pdf).
+
+#### Encoders
+
+- Default to TT Electronics EN11-HSM encoders: top-adjust, with push switch and M7×0.75 threaded bushing. Prefer 20 detents, a 5 mm bushing, and a 15 mm shaft. Choose a 6 mm D-shaft (`F`) or knurled shaft (`Q`); preferred part: `EN11-HSM1AQ15`. [Datasheet](https://www.ttelectronics.com/TTElectronics/media/ProductFiles/Datasheets/EN11.pdf).
+- Use Bourns PEC11R series encoders as an alternative. [Datasheet](https://www.bourns.com/docs/product-datasheets/pec11r.pdf).
 
 ## Part sourcing
 
