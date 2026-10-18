@@ -88,6 +88,14 @@ description: "Conventions for designing eurorack hardware."
 - Default to single- or double-row, 2.54 mm pitch through-hole pin headers and sockets for board-to-board connections.
 - Use M2.5 or M3 brass hex standoffs.
 
+### Passive components & semiconductors
+
+- Use SMD components.
+- Choose 0603 or 0402 as the default resistor and capacitor package size and use it consistently, unless requirements such as voltage rating demand a different package.
+- Use electrolytic capacitors with a DC voltage rating of at least 25 V.
+- Evaluate common parts(their SMD equivalents) before choosing specialized parts: 2N3904/2N3906 transistors; 1N4148, BAT54S, and 1N5819 diodes; LM13700 OTAs; TL072, TL074, and MCP6002 op-amps; MCP3204 ADCs; DAC8551 DACs; LM4040 voltage references; LM393B/LM339B comparators; CD4051B/CD4053B analog multiplexers; 74HC165/74HC595 shift registers; and 78L05/79L05 voltage regulators.
+- Prefer STM32 32-bit Arm Cortex microcontrollers; choose alternatives only for a clear, justified reason.
+
 ## Part sourcing
 
 ## Schematics structuring
