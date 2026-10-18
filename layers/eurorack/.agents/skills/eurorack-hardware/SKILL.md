@@ -98,7 +98,7 @@ Preferred components and selection guidelines for Eurorack designs, including pa
 
 ### Passive components & semiconductors
 
-- Use SMD components.
+- Use SMD components. Only resort to through-hole components if there is no SMD equivalent.
 - Choose 0603 or 0402 as the default resistor and capacitor package size and use it consistently, unless requirements such as voltage rating demand a different package.
 - Default to 1% resistors; select tighter tolerances and low-temperature-coefficient parts where CV/pitch accuracy requires them.
 - Prefer C0G/NP0 for timing and precision filters and X7R for decoupling; account for DC-bias capacitance loss in X7R capacitors.
@@ -120,28 +120,30 @@ Preferred components and selection guidelines for Eurorack designs, including pa
 
 ## Schematics design & structuring
 
-- Validate every circuit block across the expected supply, signal, load, and component-tolerance ranges; keep components within their datasheet-recommended operating conditions.
-- Verify ADC/DAC and amplifier input/output headroom against actual local supplies after protection and filtering; account for gain settings, converter endpoints, and loading. [DAC headroom example](https://www.ti.com/lit/gpn/dac80508).
-- Use suitably accurate, stable references for pitch-CV scaling and offsets; budget reference and supply variation, resistor-ratio errors, amplifier offset/drift, converter errors, and output loading, and provide gain/offset calibration as needed. [Error-budget guidance](https://www.analog.com/en/resources/technical-articles/calculating-the-error-budget-in-precision-dac-apps.html).
-- Follow IC and regulator datasheet decoupling requirements; default to local 100 nF ceramic capacitors from each IC supply rail to GND and bulk capacitance where supplies enter each PCB. Filter sensitive analog supplies shared with switching loads as needed. [Decoupling guidance](https://www.analog.com/media/en/training-seminars/tutorials/MT-101.pdf).
-- Define safe output, reset, and chip-select states during power-up, reset, and firmware initialization; add hardware biasing where MCU pins may float.
-- Provide accessible programming/debug connections and a reliable reset/bootloader recovery path.
+- Keep components within datasheet-recommended operating conditions across expected supply, signal, load, and tolerance ranges.
+- Check converter and amplifier headroom using actual supplies after protection and filtering, signal ranges, and loads. [DAC headroom example](https://www.ti.com/lit/gpn/dac80508).
+- Follow datasheet decoupling requirements; default to 100 nF ceramic from each IC supply rail to GND and bulk capacitance at each board’s power entry. [Decoupling guidance](https://www.analog.com/media/en/training-seminars/tutorials/MT-101.pdf).
+- Define safe startup/reset states for outputs, reset lines, and chip selects; add pull-ups/pull-downs where needed.
+- Filter sensitive analog supplies shared with switching loads as needed.
+- Budget pitch-CV error from references, resistor ratios, amplifier offset, converter accuracy, drift, and loading; calibrate gain/offset as needed. [Error-budget guidance](https://www.analog.com/en/resources/technical-articles/calculating-the-error-budget-in-precision-dac-apps.html).
+- Provide accessible programming/debug connections and reset/bootloader controls.
+- Specify electrical values with units and tolerances; encode critical limits and relationships as atopile constraints/assertions.
+- Build each PCB and multi-board system after circuit changes; fix errors and document accepted warnings before layout.
+- Calculate or simulate transfer functions, loading, timing, and stability outside atopile’s modeled constraints.
+- Add test points for GND, supplies, references, and critical signals; document expected voltages/waveforms.
 - Keep atopile sources authoritative for circuit connectivity and component specifications; regenerate KiCad outputs after circuit changes.
-- Separate custom component definitions, reusable circuits, and board-level assemblies into `components/`, `circuits/`, and `boards/`, with an independent build entry for each PCB.
-- Keep each custom component’s atopile definition, KiCad symbol, footprint, available 3D model, and supporting documentation together in its component directory.
-- Organize atopile designs into functional modules, such as power, input conditioning, signal processing, and output drivers; connect them through explicit, named interfaces at the top level.
-- Document each circuit block’s purpose, interfaces, operating ranges, key calculations, and design decisions in a local README; update it alongside circuit changes.
-- Maintain a hardware–firmware interface map covering GPIO/peripheral assignments, signal polarity, channel/bit ordering, bus addresses, and required initialization.
-- Express electrical parameters with explicit units and tolerances; use atopile constraints and assertions to encode critical limits and design relationships.
-- Build and check each PCB and, for multi-board designs, the complete interconnected system after functional changes; resolve errors and document accepted warnings before PCB layout.
-- Supplement atopile build checks with calculations or simulation for behavior outside the modeled constraints, including analog transfer functions, loading, timing, and stability.
-- Reuse suitable atopile modules and interfaces; implement repeated channels or circuit blocks once and instantiate them with explicit parameters.
-- Include test points for GND, supply rails, reference voltages, and critical signal nodes; document expected voltages or waveforms for bring-up.
+- Split circuits into functional atopile modules with explicit, named interfaces.
+- Reuse suitable modules; instantiate repeated circuits from one parameterized definition.
+- Document pin/peripheral assignments, polarity, channel/bit order, bus addresses, and initialization requirements for firmware.
+- Store custom parts, reusable circuits, and board assemblies in `components/`, `circuits/`, and `boards/`; define one build entry per PCB.
+- Keep each custom part’s `.ato`, KiCad symbol/footprint, available 3D model, and documentation together.
+- Maintain a circuit README covering purpose, interfaces, operating ranges, key calculations, and design decisions.
 
 ### Common mistakes to avoid
 
-- Verify pin-to-pad mapping against the exact part/package datasheet; explicitly connect all required supply, ground, reference, and enable pins.
-- Give unused logic inputs and control pins defined states; terminate unused op-amp sections in stable closed-loop configurations within their valid input/output ranges. [Logic inputs](https://www.ti.com/lit/an/scba004e/scba004e.pdf) · [Unused op-amps](https://www.ti.com/lit/ab/sboa204a/sboa204a.pdf).
+- Check pin-to-pad mapping against the exact part/package datasheet; connect all required supply, GND, reference, and enable pins.
+- Set unused logic and control inputs to defined states per datasheet. [Logic inputs](https://www.ti.com/lit/an/scba004e/scba004e.pdf).
+- Configure unused op-amps in stable closed-loop circuits within their input/output limits. [Unused op-amps](https://www.ti.com/lit/ab/sboa204a/sboa204a.pdf).
 
 ## Panel design rules
 
