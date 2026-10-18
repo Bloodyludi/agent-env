@@ -79,6 +79,15 @@ description: "Conventions for designing eurorack hardware."
 - Default to TT Electronics EN11-HSM encoders: top-adjust, with push switch and M7×0.75 threaded bushing. Prefer 20 detents, a 5 mm bushing, and a 15 mm shaft. Choose a 6 mm D-shaft (`F`) or knurled shaft (`Q`); preferred part: `EN11-HSM1AQ15`. [Datasheet](https://www.ttelectronics.com/TTElectronics/media/ProductFiles/Datasheets/EN11.pdf).
 - Use Bourns PEC11R series encoders as an alternative. [Datasheet](https://www.bourns.com/docs/product-datasheets/pec11r.pdf).
 
+#### Displays
+
+- Assess and select displays individually for each module.
+
+### Connectors & standoffs
+
+- Default to single- or double-row, 2.54 mm pitch through-hole pin headers and sockets for board-to-board connections.
+- Use M2.5 or M3 brass hex standoffs.
+
 ## Part sourcing
 
 ## Schematics structuring
