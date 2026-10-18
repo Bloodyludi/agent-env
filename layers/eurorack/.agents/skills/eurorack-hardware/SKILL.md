@@ -103,6 +103,15 @@ description: "Conventions for designing eurorack hardware."
 
 ## Part sourcing
 
+- Use JLCPCB as the default PCBA service and its [in-stock parts library](https://jlcpcb.com/parts/in-stock-parts) as the primary source for SMD components.
+- Use [Mouser](https://eu.mouser.com/en/) or [DigiKey](https://www.digikey.com/) as secondary sources, including for through-hole and mechanical parts, and for researching components and alternatives.
+- Use [Thonk](https://www.thonk.co.uk/) for Eurorack-specific components such as jacks, switches, and buttons.
+- Use [Waveshare](https://www.waveshare.com/) for displays and development boards.
+- Before finalizing the BOM, verify assembly eligibility and stock for the planned batch, including assembly-loss allowances. [JLCPCB guidance](https://jlcpcb.com/help/article/common-bom-and-cpl-matching-issues-and-explanations).
+- Record manufacturer part numbers, supplier codes, and product links in the BOM; include JLCPCB/LCSC C-codes for PCBA parts. [BOM guidance](https://jlcpcb.com/help/article/bill-of-materials-for-pcb-assembly).
+- Compare total component and assembly costs, accounting for Basic/Extended classifications and service-dependent feeder-loading fees. [Assembly pricing](https://jlcpcb.com/help/article/pcb-assembly-price).
+- Never place orders to source parts or samples yourself.
+
 ## Schematics structuring
 
 ## Panel design rules
