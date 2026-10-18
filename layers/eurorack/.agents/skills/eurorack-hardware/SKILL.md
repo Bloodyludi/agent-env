@@ -47,6 +47,11 @@ description: "Conventions for designing eurorack hardware."
 - Use PJ301BM (QingPu WQP518MA-BM) as an alternative 3.5 mm mono switching PCB jack with two GND pins: 11.5 mm effective body height, 4.5 mm thread length, and a 6 mm panel hole. [Datasheet](https://www.exploding-shed.com/thumbnail/f9/e2/24/1775034136/2473-100522-D_1920x1920.png).
 - Use [AudioJacks](https://github.com/clacktronics/AudioJacks) KiCad footprints and 3D models: `Jack_3.5mm_QingPu_WQP-PJ398SM_Vertical` for PJ398SM (“Thonkiconn”) and `Jack_3.5mm_QingPu_WQP-PJ301BM_Vertical` for PJ301BM.
 
+#### Potentiometers
+
+- Default to Alpha RD901F vertical potentiometers with a T18 shaft and M7×0.75 threaded bushing: 10 mm body height, 6 mm shaft diameter, 15 mm full shaft length, and a 7.5 mm panel hole. Select resistance and taper (B = linear, A = logarithmic) to suit the circuit. [Datasheet](https://www.thonk.co.uk/wp-content/uploads/2017/12/Alpha-9mm-Vertical-T18-RD901F-40-15K-B50K-0057.pdf) · [Shop](https://www.thonk.co.uk/shop/alpha-9mm-pots-vertical-t18/).
+- Use Song Huei R0904N vertical 9 mm snap-in tall trimmers for secondary controls such as CV attenuation: 6 mm diameter round knurled shaft, 17.2 mm full shaft length, white indicator line, and no separate knob required. Select resistance and taper (B = linear, A = logarithmic) to suit the circuit. [Datasheet](https://www.thonk.co.uk/wp-content/uploads/2014/10/R0904N_Thonk.pdf) · [Shop](https://www.thonk.co.uk/shop/ttpots/).
+
 ## Part sourcing
 
 ## Schematics structuring
