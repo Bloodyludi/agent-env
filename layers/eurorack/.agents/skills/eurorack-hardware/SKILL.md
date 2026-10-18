@@ -20,6 +20,7 @@ description: "Conventions for designing eurorack hardware."
 - Specify 10-pin power headers as 2×5 pins with 2.54 mm pitch: pins 1–2 = −12 V (red stripe), pins 3–8 = GND, pins 9–10 = +12 V.
 - Specify 16-pin power headers as 2×8 pins with 2.54 mm pitch: pins 1–2 = −12 V (red stripe), pins 3–8 = GND, pins 9–10 = +12 V, pins 11–12 = +5 V, pins 13–14 = CV, pins 15–16 = Gate.
 - Prefer onboard voltage regulators over a 16-pin power header for additional supply voltages.
+- Budget worst-case current for each supply rail and connector; check regulator dissipation and dropout, including voltage losses in protection diodes and supply filters.
 - Clearly mark the −12 V (red-stripe) end of each power header on the PCB silkscreen.
 - Protect both +12 V and −12 V supply inputs against reversed polarity.
 
@@ -31,6 +32,8 @@ description: "Conventions for designing eurorack hardware."
 - Target −5 V to +5 V for bipolar CV outputs (e.g., LFOs) and 0 V to +5 V for unipolar CV outputs (e.g., envelopes).
 - Protect inputs against accidental ±12 V patching; make outputs tolerant of shorts to ground and connections to other outputs.
 - Buffer audio and CV interfaces as needed; target ≥100 kΩ input impedance and ≤1 kΩ output impedance, with ≤100 Ω effective output impedance for 1 V/oct CV outputs. Preserve pitch accuracy under load, short-circuit protection, and stability with patch-cable capacitance. [Doepfer](https://doepfer.de/a1803.htm) · [North Coast Synthesis](https://northcoastsynthesis.com/news/all-about-levels/).
+- Scale and, where necessary, offset CV inputs into the ADC’s usable range without clipping intended signals; calculate input impedance and filter response using the full source, divider, and load network.
+- For MIDI inputs, use optoisolation and avoid a direct DC connection from the input shield/sleeve to local ground; follow the [MIDI electrical specification](https://www.midi.org/wp-content/uploads/wpforo/default_attachments/1709416667-ca33-MIDI-10-Electrical-Specification-Update.pdf).
 
 ## Clearences and dimensions
 
@@ -110,18 +113,28 @@ Preferred components and selection guidelines for Eurorack designs, including pa
 - Use [Thonk](https://www.thonk.co.uk/) for Eurorack-specific components such as jacks, switches, and buttons.
 - Use [Waveshare](https://www.waveshare.com/) for displays and development boards.
 - Before finalizing the BOM, verify assembly eligibility and stock for the planned batch, including assembly-loss allowances. [JLCPCB guidance](https://jlcpcb.com/help/article/common-bom-and-cpl-matching-issues-and-explanations).
-- Record manufacturer part numbers, supplier codes, and product links in the BOM; include JLCPCB/LCSC C-codes for PCBA parts. [BOM guidance](https://jlcpcb.com/help/article/bill-of-materials-for-pcb-assembly).
+- Record matching manufacturer identities, exact part numbers, supplier codes, and product links in component definitions and the BOM; include valid JLCPCB/LCSC C-codes for PCBA parts and document substitutions. [BOM guidance](https://jlcpcb.com/help/article/bill-of-materials-for-pcb-assembly).
+- Mark externally sourced and hand-fitted parts explicitly in the BOM and assembly instructions; never use placeholder supplier codes.
 - Compare total component and assembly costs, accounting for Basic/Extended classifications and service-dependent feeder-loading fees. [Assembly pricing](https://jlcpcb.com/help/article/pcb-assembly-price).
 - Never place orders to source parts or samples yourself.
 
 ## Schematics design & structuring
 
 - Validate every circuit block across the expected supply, signal, load, and component-tolerance ranges; keep components within their datasheet-recommended operating conditions.
-- Follow IC and regulator datasheet decoupling requirements; default to local 100 nF ceramic capacitors from each IC supply rail to GND and add bulk capacitance at the power input. [Decoupling guidance](https://www.analog.com/media/en/training-seminars/tutorials/MT-101.pdf).
+- Verify ADC/DAC and amplifier input/output headroom against actual local supplies after protection and filtering; account for gain settings, converter endpoints, and loading. [DAC headroom example](https://www.ti.com/lit/gpn/dac80508).
+- Use suitably accurate, stable references for pitch-CV scaling and offsets; budget reference and supply variation, resistor-ratio errors, amplifier offset/drift, converter errors, and output loading, and provide gain/offset calibration as needed. [Error-budget guidance](https://www.analog.com/en/resources/technical-articles/calculating-the-error-budget-in-precision-dac-apps.html).
+- Follow IC and regulator datasheet decoupling requirements; default to local 100 nF ceramic capacitors from each IC supply rail to GND and bulk capacitance where supplies enter each PCB. Filter sensitive analog supplies shared with switching loads as needed. [Decoupling guidance](https://www.analog.com/media/en/training-seminars/tutorials/MT-101.pdf).
+- Define safe output, reset, and chip-select states during power-up, reset, and firmware initialization; add hardware biasing where MCU pins may float.
+- Provide accessible programming/debug connections and a reliable reset/bootloader recovery path.
 - Keep atopile sources authoritative for circuit connectivity and component specifications; regenerate KiCad outputs after circuit changes.
+- Separate custom component definitions, reusable circuits, and board-level assemblies into `components/`, `circuits/`, and `boards/`, with an independent build entry for each PCB.
+- Keep each custom component’s atopile definition, KiCad symbol, footprint, available 3D model, and supporting documentation together in its component directory.
 - Organize atopile designs into functional modules, such as power, input conditioning, signal processing, and output drivers; connect them through explicit, named interfaces at the top level.
+- Document each circuit block’s purpose, interfaces, operating ranges, key calculations, and design decisions in a local README; update it alongside circuit changes.
+- Maintain a hardware–firmware interface map covering GPIO/peripheral assignments, signal polarity, channel/bit ordering, bus addresses, and required initialization.
 - Express electrical parameters with explicit units and tolerances; use atopile constraints and assertions to encode critical limits and design relationships.
-- Build and check the atopile design after each functional change; resolve errors and document any accepted warnings before PCB layout.
+- Build and check each PCB and, for multi-board designs, the complete interconnected system after functional changes; resolve errors and document accepted warnings before PCB layout.
+- Supplement atopile build checks with calculations or simulation for behavior outside the modeled constraints, including analog transfer functions, loading, timing, and stability.
 - Reuse suitable atopile modules and interfaces; implement repeated channels or circuit blocks once and instantiate them with explicit parameters.
 - Include test points for GND, supply rails, reference voltages, and critical signal nodes; document expected voltages or waveforms for bring-up.
 
@@ -134,7 +147,7 @@ Preferred components and selection guidelines for Eurorack designs, including pa
 
 ## Board design rules
 
-- Verify that board-to-board connector signals match pin-for-pin between the boards, and that the sandwich stack assembly is mechanically feasible.
+- Verify signal correspondence at every physical mating contact, accounting for connector pin numbering, board-side mirroring, rotation, and keying; confirm that the sandwich stack is mechanically feasible.
 
 ### PCB layout rules
 
