@@ -42,6 +42,8 @@ description: "Conventions for designing eurorack hardware."
 
 ## Common components
 
+Preferred components and selection guidelines for Eurorack designs, including package choices, mechanical dimensions, and links to datasheets and KiCad libraries.
+
 ### Panel components
 
 #### Jacks
@@ -112,11 +114,27 @@ description: "Conventions for designing eurorack hardware."
 - Compare total component and assembly costs, accounting for Basic/Extended classifications and service-dependent feeder-loading fees. [Assembly pricing](https://jlcpcb.com/help/article/pcb-assembly-price).
 - Never place orders to source parts or samples yourself.
 
-## Schematics structuring
+## Schematics design & structuring
+
+- Validate every circuit block across the expected supply, signal, load, and component-tolerance ranges; keep components within their datasheet-recommended operating conditions.
+- Follow IC and regulator datasheet decoupling requirements; default to local 100 nF ceramic capacitors from each IC supply rail to GND and add bulk capacitance at the power input. [Decoupling guidance](https://www.analog.com/media/en/training-seminars/tutorials/MT-101.pdf).
+- Keep atopile sources authoritative for circuit connectivity and component specifications; regenerate KiCad outputs after circuit changes.
+- Organize atopile designs into functional modules, such as power, input conditioning, signal processing, and output drivers; connect them through explicit, named interfaces at the top level.
+- Express electrical parameters with explicit units and tolerances; use atopile constraints and assertions to encode critical limits and design relationships.
+- Build and check the atopile design after each functional change; resolve errors and document any accepted warnings before PCB layout.
+- Reuse suitable atopile modules and interfaces; implement repeated channels or circuit blocks once and instantiate them with explicit parameters.
+- Include test points for GND, supply rails, reference voltages, and critical signal nodes; document expected voltages or waveforms for bring-up.
+
+### Common mistakes to avoid
+
+- Verify pin-to-pad mapping against the exact part/package datasheet; explicitly connect all required supply, ground, reference, and enable pins.
+- Give unused logic inputs and control pins defined states; terminate unused op-amp sections in stable closed-loop configurations within their valid input/output ranges. [Logic inputs](https://www.ti.com/lit/an/scba004e/scba004e.pdf) · [Unused op-amps](https://www.ti.com/lit/ab/sboa204a/sboa204a.pdf).
 
 ## Panel design rules
 
 ## Board design rules
+
+- Verify that board-to-board connector signals match pin-for-pin between the boards, and that the sandwich stack assembly is mechanically feasible.
 
 ### PCB layout rules
 
