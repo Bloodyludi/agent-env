@@ -21,6 +21,7 @@ description: "Conventions for designing eurorack hardware."
 - Specify 16-pin power headers as 2×8 pins with 2.54 mm pitch: pins 1–2 = −12 V (red stripe), pins 3–8 = GND, pins 9–10 = +12 V, pins 11–12 = +5 V, pins 13–14 = CV, pins 15–16 = Gate.
 - Prefer onboard voltage regulators over a 16-pin power header for additional supply voltages.
 - Clearly mark the −12 V (red-stripe) end of each power header on the PCB silkscreen.
+- Protect both +12 V and −12 V supply inputs against reversed polarity.
 
 ## Signal specifications
 
@@ -28,6 +29,8 @@ description: "Conventions for designing eurorack hardware."
 - Target +5 V for gate and trigger outputs.
 - Target 10 Vpp (−5 V to +5 V) for audio outputs.
 - Target −5 V to +5 V for bipolar CV outputs (e.g., LFOs) and 0 V to +5 V for unipolar CV outputs (e.g., envelopes).
+- Protect inputs against accidental ±12 V patching; make outputs tolerant of shorts to ground and connections to other outputs.
+- Buffer audio and CV interfaces as needed; target ≥100 kΩ input impedance and ≤1 kΩ output impedance, with ≤100 Ω effective output impedance for 1 V/oct CV outputs. Preserve pitch accuracy under load, short-circuit protection, and stability with patch-cable capacitance. [Doepfer](https://doepfer.de/a1803.htm) · [North Coast Synthesis](https://northcoastsynthesis.com/news/all-about-levels/).
 
 ## Clearences and dimensions
 
