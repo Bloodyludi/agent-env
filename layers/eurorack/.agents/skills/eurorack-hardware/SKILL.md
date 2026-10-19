@@ -1,9 +1,11 @@
 ---
 name: eurorack-hardware
-description: "Conventions for designing eurorack hardware."
+description: "Guidelines and conventions to design Eurorack hardware using atopile and KiCad, including component sourcing, panel and stacked-PCB design, and JLCPCB fabrication preparation."
 ---
 
 # Eurorack hardware engineering
+
+Use these conventions to design and review manufacturable Eurorack modules. They cover electrical interfaces, component selection and sourcing, schematics, panels, stacked PCBs, and fabrication handoff through a reproducible atopile/KiCad build pipeline.
 
 ## Tools to use
 
