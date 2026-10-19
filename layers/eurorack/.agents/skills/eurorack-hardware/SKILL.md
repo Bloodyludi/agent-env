@@ -105,6 +105,7 @@ Preferred components and selection guidelines for Eurorack designs, including pa
 - Use electrolytic capacitors with a DC voltage rating of at least 25 V.
 - Evaluate common parts(their SMD equivalents) before choosing specialized parts: 2N3904/2N3906 transistors; 1N4148, BAT54S, and 1N5819 diodes; LM13700 OTAs; TL072, TL074, and MCP6002 op-amps; MCP3204 ADCs; DAC8551 DACs; LM4040 voltage references; LM393B/LM339B comparators; CD4051B/CD4053B analog multiplexers; 74HC165/74HC595 shift registers; and 78L05/79L05 voltage regulators.
 - Prefer STM32 32-bit Arm Cortex microcontrollers; choose alternatives only for a clear, justified reason.
+- Use Recom R-78E Series for DC-to-DC conversion (12V to 5V or 3.3V)
 
 ## Part sourcing
 
@@ -142,10 +143,27 @@ Preferred components and selection guidelines for Eurorack designs, including pa
 ### Common mistakes to avoid
 
 - Check pin-to-pad mapping against the exact part/package datasheet; connect all required supply, GND, reference, and enable pins.
+- Connect all power-header pins assigned to each used rail, including every GND pin.
+- Match jack symbols to the actual tip, sleeve, and switching contacts.
+- Rate I/O protection resistors and clamps for sustained shorts to either supply rail; calculate worst-case currents and dissipation.
+- Clamp reverse voltage across BJT base–emitter junctions and LEDs exposed to bipolar signals.
+- Use non-polar capacitors wherever voltage across the capacitor can reverse.
+- Use rated fuses/PTCs when overcurrent protection is needed.
+- Current-limit jack normal connections to supply rails to tolerate plug-insertion shorts.
+- Limit current into shunt clipping/clamping diodes with series resistance.
+- Check op-amp common-mode limits at external inputs; attenuate/clamp signals to prevent phase reversal.
+- Give external inputs a DC return path so open-ended patch cables produce a defined voltage.
+- Ensure gate/trigger outputs source and sink current at the required HIGH/LOW levels.
 - Set unused logic and control inputs to defined states per datasheet. [Logic inputs](https://www.ti.com/lit/an/scba004e/scba004e.pdf).
 - Configure unused op-amps in stable closed-loop circuits within their input/output limits. [Unused op-amps](https://www.ti.com/lit/ab/sboa204a/sboa204a.pdf).
+- Calculate feedback-capacitor cutoff frequencies from actual resistor values; preserve the required bandwidth.
+- Design resistor/bead supply filters for target attenuation and load current; check voltage drop.
+- Choose internal feedback resistances to balance noise and driver loading. [Op-amp noise](https://www.analog.com/media/en/training-seminars/tutorials/MT-047.pdf).
+- Further reading and illustrated reference: [Design mistakes in synth schematics](https://northcoastsynthesis.com/news/design-mistakes-in-synth-schematics/).
 
 ## Panel design rules
+
+- Ensure component fit by reading their outer dimensions from the respective datasheets.
 
 ## Board design rules
 
