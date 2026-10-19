@@ -179,7 +179,8 @@ Preferred components and selection guidelines for Eurorack designs, including pa
 
 ## Board design rules
 
-- Use a 110 mm PCB height; define board outlines and stack positions with clearance for rack rails, mounting hardware, and adjacent-board components.
+- Use a 110 mm PCB height for the control board (the one that sits directly behind the panel); define board outlines and stack positions with clearance for rack rails, mounting hardware, and adjacent-board components.
+- Stack additional boards parallel behind the control board and panel, with 10 mm spacing between adjacent boards and the same width as the control board; use the connectors and standoffs specified in [Connectors & standoffs](#connectors--standoffs).
 - Verify signal correspondence at every physical mating contact, accounting for connector pin numbering, board-side mirroring, rotation, and keying; confirm that the sandwich stack is mechanically feasible.
 - Match each footprint to the exact package and datasheet land pattern, including exposed pads and mounting holes.
 - Choose the copper layer count and stackup before routing; keep KiCad settings and manufacturing outputs consistent.
