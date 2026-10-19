@@ -220,3 +220,11 @@ Preferred components and selection guidelines for Eurorack designs, including pa
 - Include assembly drawings and instructions covering polarity, hand-fitted/DNP parts, mounting hardware, stack assembly, and prototype bring-up, programming, and calibration.
 - Package releases by board and hardware revision with manufacturing files, KiCad projects, schematic PDFs, STEP models, and assembly notes; record the source commit and tool versions.
 - Hand off the fabrication package and manufacturing settings for user review and ordering; never place PCB or assembly orders yourself.
+
+### JLCPCB requirements
+
+- Select and record Economic or Standard PCBA before layout; verify current board-size, stackup, finish, colour, package, and assembly-side limits. [Assembly capabilities](https://jlcpcb.com/capabilities/pcb-assembly-capabilities).
+- Reserve assembly handling features before placement: Economic PCBA requires 2–3 Ø1.152 mm NPTH tooling holes with 0.148 mm mask expansion; Standard PCBA requires edge rails and fiducials. [Tooling holes](https://jlcpcb.com/help/article/how-to-add-tooling-holes-for-pcb-assembly-order) · [Assembly capabilities](https://jlcpcb.com/capabilities/pcb-assembly-capabilities).
+- Follow JLCPCB’s package-pair spacing recommendations and measurement method when placing SMD components. [Component spacing](https://jlcpcb.com/help/article/minimum-spacing-for-smd-components).
+- Configure solder-mask expansion and dam limits for the selected layer count, copper weight, and mask colour. [Solder-mask guidance](https://jlcpcb.com/blog/basic-design-of-solder-mask).
+- Check panel cutouts and board-stack fits against outline, hole, and thickness tolerances; allow ±10% thickness variation for nominal 1.6 mm FR-4. [PCB capabilities](https://jlcpcb.com/capabilities/pcb-capabilities/).
