@@ -179,11 +179,41 @@ Preferred components and selection guidelines for Eurorack designs, including pa
 
 ## Board design rules
 
+- Use a 110 mm PCB height; define board outlines and stack positions with clearance for rack rails, mounting hardware, and adjacent-board components.
 - Verify signal correspondence at every physical mating contact, accounting for connector pin numbering, board-side mirroring, rotation, and keying; confirm that the sandwich stack is mechanically feasible.
-- Ensure the right component footprints are chosen.
+- Match each footprint to the exact package and datasheet land pattern, including exposed pads and mounting holes.
+- Choose the copper layer count and stackup before routing; keep KiCad settings and manufacturing outputs consistent.
+- Keep fabrication limits and netclasses in shared configuration; apply them consistently during export, routing, and route import.
+- Mark each PCB’s name and hardware revision on unobstructed silkscreen.
 
 ### PCB layout rules
 
+- Place and lock panel components, mating connectors, and mounting holes before arranging the remaining circuitry.
+- Reserve clearance for through-hole leads and solder joints on the opposite PCB side.
+- Place decoupling capacitors next to IC supply pins with short, direct supply and GND connections.
+- Group each circuit’s ICs and supporting components to keep local signal paths short.
+- Keep heat-producing regulators away from precision DACs, voltage references, and pitch-CV circuitry.
+- Leave routing space around dense ICs and cable-insertion clearance around connectors.
+- Create board-layout variants with 90° rotations of freely placed components to improve routing; preserve fixed positions and orientations.
+- Check placements for overlaps and board-edge violations before routing, accounting for footprint origins, rotation, and board-side mirroring.
+
 ### PCB routing rules
 
+- Run KiCad DRC after route import and zone filling; resolve violations and unconnected items before fabrication export.
+- Never create DRC exceptions without explicit user approval; each exception must be individually reviewed and documented.
+- Pre-route constrained connections before autorouting; verify pad connectivity and layer transitions after route import.
+- Assign ground pours explicitly to the intended GND net; refill zones and verify continuity after routing changes.
+- For congested boards, compare DRC-passing placement/routing variants; prefer fewer vias and shorter traces.
+
 ## Fabrication
+
+- Generate fabrication and assembly files together from the same final PCB revision through the Makefile pipeline.
+- Record each board’s material, thickness, layer stackup, copper weight, surface finish, mask/silkscreen colours, and assembly sides.
+- Package each PCB separately with Gerbers for every copper layer, mask, silkscreen, outline, and required paste layers, plus Excellon PTH/NPTH drills. [JLCPCB export guide](https://jlcpcb.com/help/article/how-to-generate-gerber-and-drill-files-in-kicad-9).
+- Use consistent millimetre coordinates and origins across Gerber, drill, and CPL exports.
+- Export JLCPCB-compatible BOM and CPL files for the PCBA subset; require matching, unique designators and correct BOM quantities. [BOM/CPL guidance](https://jlcpcb.com/help/article/advice-for-bom-and-cpl-files-preparation).
+- Verify CPL centroids, board sides, and rotations against the final layout; check pin 1 and polarity, including bottom-side components. [CPL format](https://jlcpcb.com/help/article/pick-place-file-for-pcb-assembly).
+- Review exported Gerbers and drills in a Gerber viewer; check layer alignment, outlines, cutouts, holes/slots, solder mask, and silkscreen.
+- Include assembly drawings and instructions covering polarity, hand-fitted/DNP parts, mounting hardware, stack assembly, and prototype bring-up, programming, and calibration.
+- Package releases by board and hardware revision with manufacturing files, KiCad projects, schematic PDFs, STEP models, and assembly notes; record the source commit and tool versions.
+- Hand off the fabrication package and manufacturing settings for user review and ordering; never place PCB or assembly orders yourself.
