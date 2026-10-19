@@ -18,7 +18,7 @@ Use these conventions to design and review manufacturable Eurorack modules. They
 
 ## Power specifications
 
-- Use a shrouded 2.54 mm pitch IDC socket for the power connection
+- Use a shrouded 2.54 mm pitch IDC socket for the power connection.
 - Specify 10-pin power headers as 2×5 pins with 2.54 mm pitch: pins 1–2 = −12 V (red stripe), pins 3–8 = GND, pins 9–10 = +12 V.
 - Specify 16-pin power headers as 2×8 pins with 2.54 mm pitch: pins 1–2 = −12 V (red stripe), pins 3–8 = GND, pins 9–10 = +12 V, pins 11–12 = +5 V, pins 13–14 = CV, pins 15–16 = Gate.
 - Prefer onboard voltage regulators over a 16-pin power header for additional supply voltages.
@@ -37,7 +37,7 @@ Use these conventions to design and review manufacturable Eurorack modules. They
 - Scale and, where necessary, offset CV inputs into the ADC’s usable range without clipping intended signals; calculate input impedance and filter response using the full source, divider, and load network.
 - For MIDI inputs, use optoisolation and avoid a direct DC connection from the input shield/sleeve to local ground; follow the [MIDI electrical specification](https://www.midi.org/wp-content/uploads/wpforo/default_attachments/1709416667-ca33-MIDI-10-Electrical-Specification-Update.pdf).
 
-## Clearences and dimensions
+## Clearances and dimensions
 
 - Use a panel height of 128.5 mm for 3U modules.
 - Take panel width from the `actual module width [mm]` column in [Doepfer’s Table 1](https://doepfer.de/a100_man/a100m_e.htm).
@@ -133,7 +133,7 @@ Preferred components and selection guidelines for Eurorack designs, including pa
 - Add panel-to-PCB standoffs where extra support is needed; match their effective height to the jack-defined PCB-to-panel gap.
 - Use `F.SilkS` (front silkscreen) for panel labels and decorative artwork.
 - Keep labels clear of knobs, nuts, and plugs.
-- Use [KiCad faceplate and PCB templates](https://github.com/JonathanBedrava/eurorack-kicad-templates) as starting points; ensure their dimensions and mounting slots fit rules above with a +-0.3mm tolerance.
+- Use [KiCad faceplate and PCB templates](https://github.com/JonathanBedrava/eurorack-kicad-templates) as starting points; ensure their dimensions and mounting slots fit rules above with a ±0.3 mm tolerance.
 - Consider [Eurorack Panel Generator](https://github.com/napolitano/eurorack-panel-generator) as another starting point for panel creation; review its noncommercial licensing before use.
 
 ## Board design rules

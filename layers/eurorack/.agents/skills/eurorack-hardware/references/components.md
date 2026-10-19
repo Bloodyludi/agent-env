@@ -47,5 +47,5 @@ Preferred parts for component selection and panel layout. Apply the shared selec
 
 ## Passive components & semiconductors
 
-- Evaluate common parts(their SMD equivalents) before choosing specialized parts: 2N3904/2N3906 transistors; 1N4148, BAT54S, and 1N5819 diodes; LM13700 OTAs; TL072, TL074, and MCP6002 op-amps; MCP3204 ADCs; DAC8551 DACs; LM4040 voltage references; LM393B/LM339B comparators; CD4051B/CD4053B analog multiplexers; 74HC165/74HC595 shift registers; and 78L05/79L05 voltage regulators.
-- Use Recom R-78E Series for DC-to-DC conversion (12V to 5V or 3.3V)
+- Evaluate common parts (their SMD equivalents) before choosing specialized parts: 2N3904/2N3906 transistors; 1N4148, BAT54S, and 1N5819 diodes; LM13700 OTAs; TL072, TL074, and MCP6002 op-amps; MCP3204 ADCs; DAC8551 DACs; LM4040 voltage references; LM393B/LM339B comparators; CD4051B/CD4053B analog multiplexers; 74HC165/74HC595 shift registers; and 78L05/79L05 voltage regulators.
+- Use Recom R-78E series for DC-to-DC conversion (12 V to 5 V or 3.3 V).
