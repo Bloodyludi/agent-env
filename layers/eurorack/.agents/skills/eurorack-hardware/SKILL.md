@@ -192,6 +192,7 @@ Preferred components and selection guidelines for Eurorack designs, including pa
 - Reserve clearance for through-hole leads and solder joints on the opposite PCB side.
 - Place decoupling capacitors next to IC supply pins with short, direct supply and GND connections.
 - Group each circuit’s ICs and supporting components to keep local signal paths short.
+- Keep clocks, PWM, and switching-power paths away from precision analog circuitry and references. [Mixed-signal layout](https://www.analog.com/en/resources/analog-dialogue/articles/what-are-the-basic-guidelines-for-layout-design-of-mixed-signal-pcbs.html).
 - Keep heat-producing regulators away from precision DACs, voltage references, and pitch-CV circuitry.
 - Leave routing space around dense ICs and cable-insertion clearance around connectors.
 - Create board-layout variants with 90° rotations of freely placed components to improve routing; preserve fixed positions and orientations.
@@ -201,7 +202,9 @@ Preferred components and selection guidelines for Eurorack designs, including pa
 
 - Run KiCad DRC after route import and zone filling; resolve violations and unconnected items before fabrication export.
 - Never create DRC exceptions without explicit user approval; each exception must be individually reviewed and documented.
+- Size power traces and vias for worst-case current, allowable voltage drop, and temperature rise. [TI guidance](https://www.ti.com/video/6245175641001).
 - Pre-route constrained connections before autorouting; verify pad connectivity and layer transitions after route import.
+- Preserve continuous GND return paths beneath signal traces; avoid crossing plane splits or voids. [Grounding guidance](https://www.analog.com/en/resources/technical-articles/successful-pcb-grounding-with-mixedsignal-chips--follow-the-path-of-least-impedance.html).
 - Assign ground pours explicitly to the intended GND net; refill zones and verify continuity after routing changes.
 - For congested boards, compare DRC-passing placement/routing variants; prefer fewer vias and shorter traces.
 
