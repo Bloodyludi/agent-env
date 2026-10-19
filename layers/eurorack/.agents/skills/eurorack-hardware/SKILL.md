@@ -163,11 +163,24 @@ Preferred components and selection guidelines for Eurorack designs, including pa
 
 ## Panel design rules
 
-- Ensure component fit by reading their outer dimensions from the respective datasheets.
+- Design first-iteration panels as FR-4 PCBs in KiCad; aluminium is an optional choice for full production.
+- Use 1.6 mm panel thickness; verify shaft protrusion and nut engagement with washers fitted.
+- Use a shared coordinate reference for panel cutouts, PCB footprints, and standoff holes.
+- Check adjacent component spacing using datasheet body length and width; include knobs and mounting hardware in the clearance check.
+- Mount the component PCB parallel behind the panel: use 10 mm PCB-to-panel spacing for Thonkiconn jacks or 11.5 mm for PJ301BM jacks. Keep other component bodies within this gap.
+- Size panel cutouts for shafts and actuators using datasheet dimensions, allowing assembly clearance and full travel.
+- Define rectangular cutouts for displays, SD-card slots, and USB sockets as closed outlines on `Edge.Cuts`.
+- Round internal cutout corners to the fabricator’s supported milling radius; check component clearance at those corners.
+- Add panel-to-PCB standoffs where extra support is needed; match their effective height to the jack-defined PCB-to-panel gap.
+- Use `F.SilkS` (front silkscreen) for panel labels and decorative artwork.
+- Keep labels clear of knobs, nuts, and plugs.
+- Use [KiCad faceplate and PCB templates](https://github.com/JonathanBedrava/eurorack-kicad-templates) as starting points; ensure their dimensions and mounting slots fit rules above with a +-0.3mm tolerance.
+- Consider [Eurorack Panel Generator](https://github.com/napolitano/eurorack-panel-generator) as another starting point for panel creation; review its noncommercial licensing before use.
 
 ## Board design rules
 
 - Verify signal correspondence at every physical mating contact, accounting for connector pin numbering, board-side mirroring, rotation, and keying; confirm that the sandwich stack is mechanically feasible.
+- Ensure the right component footprints are chosen.
 
 ### PCB layout rules
 
