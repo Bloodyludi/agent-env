@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export PATH="$HOME/.asdf/shims:/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+exec direnv exec "$PWD" omp "$@"

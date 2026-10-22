@@ -1,6 +1,7 @@
 ---
 name: eurorack-hardware
 description: "Guidelines and conventions to design Eurorack hardware using atopile and KiCad, including component sourcing, panel and stacked-PCB design, and JLCPCB fabrication preparation."
+user-invocable: true
 ---
 
 # Eurorack hardware engineering
