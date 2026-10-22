@@ -38,8 +38,8 @@ Preferred parts for component selection and panel layout. Apply the shared selec
 
 ### Encoders
 
-- Default to TT Electronics EN11-HSM encoders: top-adjust, with push switch and M7×0.75 threaded bushing. Prefer 20 detents, a 5 mm bushing, and a 15 mm shaft. Choose a 6 mm D-shaft (`F`) or knurled shaft (`Q`); preferred part: `EN11-HSM1AQ15`. [Datasheet](https://www.ttelectronics.com/TTElectronics/media/ProductFiles/Datasheets/EN11.pdf).
-- Use Bourns PEC11R series encoders as an alternative. [Datasheet](https://www.bourns.com/docs/product-datasheets/pec11r.pdf).
+- Default to TT Electronics EN11-HSM encoders: top-adjust, with push switch and M7×0.75 threaded bushing. Prefer 20 detents, a 5 mm bushing, and a 15 mm shaft. Choose a 6 mm D-shaft (`F`) or knurled shaft (`Q`); preferred part: `EN11-HSM1BF20`. [Datasheet](https://www.ttelectronics.com/TTElectronics/media/ProductFiles/Datasheets/EN11.pdf).
+- Use Bourns PEC11R series encoders as an alternative. Best fit: PEC11R-4220K-S0024 [Datasheet](https://www.bourns.com/docs/product-datasheets/pec11r.pdf).
 
 ### Displays
 
